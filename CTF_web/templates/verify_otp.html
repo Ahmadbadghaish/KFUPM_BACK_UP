@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="container mx-auto p-6">
+        <h1 class="text-3xl font-bold mb-6 text-center">Verify OTP</h1>
+
+        <form action="{{ url_for('verify_otp') }}" method="POST" class="bg-gray-800 p-6 rounded shadow-md">
+            <label for="otp" class="block text-sm font-medium">Enter the 3-digit OTP</label>
+            <input type="text" name="otp" class="mt-2 mb-4 p-3 bg-gray-700 rounded w-full">
+
+            <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full">Verify OTP</button>
+        </form>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="mt-4 text-center">
+                {% for category, message in messages %}
+                    <p class="text-red-500">{{ message }}</p>
+                {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>

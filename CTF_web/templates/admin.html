@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="container mx-auto p-6">
+        <h1 class="text-4xl font-bold mb-6 text-center">Admin Page</h1>
+        <p class="text-center">Flag: {{ flag }}</p>
+        
+        <div class="mt-8 bg-gray-800 p-6 rounded shadow-md">
+            <h2 class="text-xl font-semibold mb-4">Command Execution</h2>
+            <form action="{{ url_for('admin') }}" method="POST">
+                <label for="command" class="block text-sm font-medium">Enter a command:</label>
+                <input type="text" name="command" class="mt-2 mb-4 p-3 bg-gray-700 rounded w-full">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">Execute</button>
+            </form>
+            {% if output %}
+                <div class="mt-4 p-4 bg-gray-700 rounded">
+                    <h3 class="text-lg font-semibold mb-2">Command Output:</h3>
+                    <pre>{{ output }}</pre>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

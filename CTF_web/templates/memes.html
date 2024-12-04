@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memes</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="container mx-auto p-6">
+        <h1 class="text-4xl font-bold mb-6 text-center">Memes</h1>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {% for meme in memes %}
+            <li class="bg-gray-800 p-4 rounded shadow-md">
+                <a href="{{ url_for('serve_meme', meme_id=meme['id']) }}" class="block text-center">
+                    <img src="{{ url_for('static', filename='memes/' + meme['filename']) }}" alt="{{ meme['description'] }}" class="w-full rounded">
+                    <p class="mt-2 text-sm">{{ meme['description'] }}</p>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

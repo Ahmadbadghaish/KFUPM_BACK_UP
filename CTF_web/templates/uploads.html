@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uploaded Files</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="container mx-auto p-6">
+        <h1 class="text-4xl font-bold mb-6 text-center">Uploaded Files</h1>
+        <p class="text-center">Congratulations! You've discovered the uploads page that are still being developed and has no flags.</p>
+        <p class="text-center">I am not joking. i am still doing the challenege of this page</p>
+        <p class="mt-6 text-center">FLAG: {{ flag }}</p>
+
+        <div class="mt-8 text-center">
+            <h2 class="text-xl font-semibold">Available Files:</h2>
+            <ul class="mt-4">
+                <li><a href="{{ url_for('serve_upload', file_number=1) }}" class="text-blue-400 hover:underline">report1.pdf</a></li>
+                <li><a href="{{ url_for('serve_upload', file_number=2) }}" class="text-blue-400 hover:underline">report2.pdf</a></li>
+            </ul>
+        </div>
+
+        <div class="mt-8 bg-gray-800 p-6 rounded shadow-md">
+            <h2 class="text-xl font-semibold">Upload a File</h2>
+            <form action="{{ url_for('file_upload') }}" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" class="mt-4 mb-4 p-3 bg-gray-700 rounded w-full">
+                <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full">Upload File</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

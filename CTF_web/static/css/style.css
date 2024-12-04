@@ -1,0 +1,38 @@
+/* static/css/style.css */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff;
+}
+
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Fade-in animation */
+.fade-in {
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Button hover animation */
+.btn-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 14px rgba(0, 118, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+/* Additional Tailwind overrides if needed */
+.container {
+    padding: 2rem;
+    max-width: 800px;
+    margin: auto;
+}
+
+.bg-custom {
+    background-color: #1e293b; /* Dark background color */
+}

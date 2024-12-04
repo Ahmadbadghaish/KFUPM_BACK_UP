@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  flask_app:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      FLASK_ENV: development
+    depends_on:
+      - db_init
+
+  db_init:
+    image: python:3.10-slim
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: python setup_db.py

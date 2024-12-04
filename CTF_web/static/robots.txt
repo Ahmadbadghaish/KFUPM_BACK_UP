@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin
+Disallow: /files/uploads
+Disallow: /login
+Disallow: /employees.txt
