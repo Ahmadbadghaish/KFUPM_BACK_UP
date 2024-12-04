@@ -79,16 +79,16 @@ def forgot_password():
         conn.close()
 
         if user:
-            # Vulnerability: Different response for existing vs. non-existing usernames
-            flash("User found. OTP sent to your registered email.", "success")
-            return render_template('verify_otp.html')
-
+            # Save OTP and username to session
             session['otp'] = "031"  # Hardcoded OTP
             session['username_reset'] = username
+
+            # Vulnerability: Different response for existing vs. non-existing usernames
+            flash("User found. OTP sent to your registered email.", "success")
+            return redirect(url_for('verify_otp'))  # Redirect to OTP verification page
         else:
             flash("Username not found. Please try again.", "danger")
-
-        return redirect(url_for('forgot_password'))
+            return redirect(url_for('forgot_password'))
 
 
 
@@ -106,6 +106,7 @@ def verify_otp():
             flash("Invalid OTP. Please try again.", "danger")
 
     return render_template('verify_otp.html')
+
 
 @app.route('/reset_password', methods=['GET', 'POST'])
 def reset_password():
