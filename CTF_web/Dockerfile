@@ -1,20 +1,26 @@
-# Use an official Python image
-FROM python:3.10-slim
+# Use the official Python base image
+FROM python:3.12-slim
 
-# Set the working directory in the container
+# Set environment variables to prevent Python from buffering output
+ENV PYTHONUNBUFFERED=1
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_RUN_PORT=5000
+
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# Copy only requirements first to leverage Docker's caching
+COPY requirements.txt requirements.txt
 
-# Install Python dependencies
-RUN pip install -r requirements.txt
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Run the database setup script to initialize the database
-RUN python setup_db.py
+# Copy the rest of the application code
+COPY . .
 
-# Expose the port that Flask will run on
+# Expose the port Flask runs on
 EXPOSE 5000
 
 # Command to run the Flask app
-CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+CMD ["flask", "run"]
